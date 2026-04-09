@@ -1,0 +1,19 @@
+{
+  "name": "mbt-smart-home",
+  "version": "1.0.0",
+  "description": "Model-based testing demo: smart-home state model, scenario generator, model vs system runner.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "typescript": "^5.5.3",
+    "vitest": "^3.0.0",
+    "xstate": "^5.30.0"
+  },
+  "private": true
+}
