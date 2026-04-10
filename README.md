@@ -81,6 +81,19 @@ the same seed always produces the same event sequence.
 
 That is useful when debugging failures, because a failing scenario can be replayed exactly.
 
+## Scenario generation strategy
+
+The scenario generator is state-aware.  
+Event probabilities depend on the current model state to produce more meaningful sequences.
+
+For example:
+- `userArrives` is more likely when the system is `AWAY`
+- `dayBreaks` is more likely during `NIGHT`
+- `motionDetected` is more likely when `HOME` and `NIGHT`
+
+Events are then selected using weighted random selection.
+This balances exploration with realistic transitions.
+
 ## State model
 
 The diagram below shows all reachable states and transitions.
@@ -100,6 +113,12 @@ The project contains two kinds of checks:
 
 ### 2. MBT tests
 `mbt.example.test.ts` generates multiple random scenarios and checks that the model and the system stay equivalent throughout the run.
+
+### 3. XState example tests
+
+An additional example demonstrates model-based testing using XState.  
+A small state machine is defined and random event sequences are executed against it to verify valid transitions.  
+This shows how MBT can also be expressed using explicit state machines and path-based testing.
 
 ## Logical Structure
 ![](diagram.png)

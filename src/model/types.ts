@@ -23,4 +23,4 @@ export const ALL_EVENTS: readonly Event[] = [
   'nightFalls',
   'dayBreaks',
   'motionDetected',
-] as const; // to fix: both readonly and as const at the same time is over than enough
+]; // fixed
