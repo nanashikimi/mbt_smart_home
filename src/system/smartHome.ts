@@ -20,11 +20,16 @@ function reduceEvent(state: State, event: Event): State {
       return { ...state, time: 'DAY', motion: 'NONE', light: 'OFF' };
     case 'motionDetected':
       return { ...state, motion: 'DETECTED' };
+    case 'userSleeps':
+      return { ...state, activity: 'SLEEPING', motion: 'NONE' };
+    case 'userWakesUp':
+      return { ...state, activity: 'AWAKE', motion: 'NONE' };
   }
 }
 
 function deriveLight(s: State): State['light'] {
   if (s.presence === 'AWAY') return 'OFF';
+  if (s.activity === 'SLEEPING') return 'OFF';
   if (s.time === 'DAY') return 'OFF';
   return s.motion === 'DETECTED' ? 'ON' : 'OFF';
 }

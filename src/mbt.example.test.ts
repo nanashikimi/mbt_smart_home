@@ -22,6 +22,21 @@ describe('MBT Smart Home', () => {
       time: 'DAY',
       motion: 'NONE',
       light: 'OFF',
+      activity: 'AWAKE',
+    });
+  });
+
+  it('does not turn light on when resident is sleeping', () => {
+    const events = ['nightFalls', 'userSleeps', 'motionDetected'] as const;
+    let s = INITIAL_STATE;
+    for (const e of events) {
+      s = applyEvent(s, e);
+    }
+    expect(s).toMatchObject({
+      time: 'NIGHT',
+      activity: 'SLEEPING',
+      motion: 'DETECTED',
+      light: 'OFF',
     });
   });
 });

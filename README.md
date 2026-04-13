@@ -100,6 +100,12 @@ The diagram below shows all reachable states and transitions.
 
 ![](state_diagram.png)
 
+The full state diagram including sleeping states looks as follows:
+
+![](full_state.png)
+
+As full state diagram looks like a Cartesian product now, I would prefer to cut it into logical dimensions in the future commits.
+
 ## Tests
 
 The project contains two kinds of checks:

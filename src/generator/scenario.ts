@@ -42,6 +42,8 @@ function pickStateAwareEvent(state: State, rnd: () => number): Event {
             ? 1
             : 0.1,
     },
+    { event: 'userSleeps', weight: state.activity === 'AWAKE' ? 1.5 : 0.1 },
+    { event: 'userWakesUp', weight: state.activity === 'SLEEPING' ? 2.5 : 0.1 },
   ];
 // weighted random selection
   const total = weighted.reduce((sum, w) => sum + w.weight, 0);

@@ -5,15 +5,15 @@ import { systemStep } from '../system';
 export interface RunScenarioResult {
   ok: boolean;
   steps: number;
-  // Full event list used for the run.
+  // Full event list used for run.
   events: readonly Event[];
-  // When ok is false: index of the first mismatching step.
+  // When ok is false, thn index of the first mismatching step.
   firstMismatchIndex?: number;
   expected?: State;
   actual?: State;
-  // Event after which model and system diverged.
+  // Key event after which model and system diverged.
   event?: Event;
-  // Prefix of events up to and including the failing one (only when ok is false).
+  // Prefix of events up to and including(]) the failing one (only when ok is false).
   trace?: readonly Event[];
 }
 
@@ -22,11 +22,12 @@ function statesEqual(a: State, b: State): boolean {
     a.presence === b.presence &&
     a.time === b.time &&
     a.motion === b.motion &&
-    a.light === b.light
+    a.light === b.light &&
+    a.activity === b.activity
   );
 }
 
-// Runs the scenario through the model and the system; compares state after every step.
+// Runs the scenario through the model and the system, compares state after every step.
 export function runScenario(
   initial: State,
   events: readonly Event[],

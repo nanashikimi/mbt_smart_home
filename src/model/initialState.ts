@@ -5,4 +5,5 @@ export const INITIAL_STATE: State = {
   time: 'DAY',
   motion: 'NONE',
   light: 'OFF',
+  activity: 'AWAKE',
 };
